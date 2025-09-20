@@ -1,0 +1,18 @@
+{
+	"id": "Dumbtro",
+	"name": "Dumbtro",
+	"display_name": "Dumbtro",
+	"author": [
+		"Horizon7006"
+	],
+	"description": "A balatro mod with shitpost jokers and more.",
+	"prefix": "dumb",
+	"main_file": "Dumbtro.lua",
+	"priority": 0,
+	"badge_colour": "3030ab",
+	"badge_text_colour": "FFFFFF",
+	"version": "1.0.0",
+	"dependencies": [
+		"Steamodded (>=1.0.0~BETA-0827c)"
+	]
+}

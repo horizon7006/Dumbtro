@@ -38,7 +38,7 @@ end
 
 local files = NFS.getDirectoryItems(mod_path .. "libs")
 for _, file in ipairs(files) do
-    print("[DUMB] Loading lua file " .. file)
+    print("[DUMB] Loading lib file " .. file)
     local f, err = SMODS.load_file("libs/" .. file)
     if err then
         error(err)
@@ -49,7 +49,7 @@ end
 -- Joker pool
 SMODS.ObjectType({
     key = "dumb_joker_pool",
-    default = "j_colon3",
+    default = "j_dumb_colon3",
     cards = {},
     inject = function(self)
         SMODS.ObjectType.inject(self)

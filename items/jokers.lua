@@ -30,6 +30,10 @@ SMODS.Joker {
     atlas = 'colon3',
     pools = { ["dumb_joker_pool"] = true },
 
+    loc_vars = function(self, info_queue, center)
+        return { vars = { center.ability.extra.joker_slots } }
+    end,
+
     set_ability = function(self, card, initial)
         card:set_edition("e_negative", true)
     end,
@@ -82,6 +86,10 @@ SMODS.Joker {
     atlas = 'sixseven',
     pools = { ["dumb_joker_pool"] = true },
 
+    loc_vars = function(self, info_queue, center)
+        return { vars = { center.ability.extra.mult } }
+    end,
+
     calculate = function(self, card, context)
         if context.cardarea == G.jokers and context.joker_main then
             return {
@@ -121,6 +129,10 @@ SMODS.Joker {
     discovered = true,
     atlas = 'fourtyone',
     pools = { ["dumb_joker_pool"] = true },
+
+    loc_vars = function(self, info_queue, center)
+        return { vars = { center.ability.extra.mult } }
+    end,
 
     calculate = function(self, card, context)
         if context.cardarea == G.jokers and context.joker_main then
@@ -330,4 +342,54 @@ SMODS.Joker {
             }
         end
     end
+}
+
+
+SMODS.Atlas {
+    key = 'clanker',
+    path = 'clanker.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Joker {
+    key = 'clanker',
+    loc_txt = {
+        name = 'clanker',
+        text = { 'buy it i dare you' }
+    },
+    rarity = 1,
+    cost = 2,
+    atlas = 'clanker',
+    pools = { ["dumb_joker_pool"] = true },
+    config = { extra = { x_chips = 2 } },
+    unlocked = true,
+    discovered = true,
+
+    loc_vars = function(self, info_queue, center)
+        return { vars = { center.ability.extra.x_chips } }
+    end,
+
+    add_to_deck = function(self, card, from_debuff)
+        clankcount = 0
+        for i = 1, #G.jokers.cards do
+            if G.jokers.cards[i].config.center_key == "j_dumb_clanker" and G.jokers.cards[i].debuff ~= true then
+                clankcount = clankcount + 1
+            end
+        end
+        if clankcount < 1 then
+            G.FUNCS.overlay_menu {
+                definition = create_UIBox_custom_video1("robotcooking", "yes"),
+                config = { no_esc = true }
+            }
+        end
+    end,
+    calculate = function(self, card, context)
+        if context.cardarea == G.jokers and context.joker_main then
+            return {
+                x_chips = card.ability.extra.x_chips
+            }
+        end
+    end
+
 }
